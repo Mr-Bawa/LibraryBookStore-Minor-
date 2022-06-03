@@ -1,4 +1,6 @@
 let libraryForm=document.getElementById('libraryForm');
+const tbody=document.getElementById('tbody');
+tbody.innerHTML=localStorage.getItem('book-data');
 
 let myAlert=document.querySelector('.toast');
 let bsAlert=new bootstrap.Toast(myAlert);
@@ -8,9 +10,10 @@ function deletes(d){
     const delRow=document.getElementsByTagName('tr')[rowIndex];
     const t_body=document.getElementsByTagName('tbody')[0];
     t_body.removeChild(delRow);
-    
+    localStorage.setItem('book-data',tbody.innerHTML);
 }
-
+a=0;
+bookdata=``;
 class Book{
     constructor(bookName,author,catagory){
         this.bookName=bookName
@@ -23,14 +26,15 @@ class bookDisplay{
         this.book=book
     }
     addBook(){
-        const tbody=document.getElementById('tbody');
-        const data=document.createElement('tr');
-        data.innerHTML=`<th scope="row">1</th>
+        a++
+        bookdata += `<tr><th scope="row">${a}</th>
                         <td>${this.book.bookName}</td>
                         <td>${this.book.author}</td>
                         <td>${this.book.catagory}</td>
-                        <td><button class="btn btn-danger" onclick={deletes(this)}>Delete</button></td>`
-        tbody.append(data)
+                        <td><button class="btn btn-danger" onclick={deletes(this)}>Delete</button></td></tr>    `
+        tbody.innerHTML =bookdata
+        console.log(bookdata)
+        localStorage.setItem('book-data',bookdata)
     }
 }
 
@@ -55,7 +59,6 @@ var libraryFormSubmit=(e)=>{
         catagory='Cooking';
     }
     const book=new Book(bookname,author,catagory);
-    // console.log(book);
     const displayBook= new bookDisplay(book);
     displayBook.addBook();
 
