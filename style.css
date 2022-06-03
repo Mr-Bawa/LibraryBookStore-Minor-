@@ -1,0 +1,13 @@
+body{
+    background-color: rgb(246, 246, 246);
+}
+.heading{
+    padding-top: 10px;
+    color: rgb(255, 132, 0);
+}
+.form-label{
+    font-weight: bold;
+}
+.form-control{
+    width: 50%;
+}
