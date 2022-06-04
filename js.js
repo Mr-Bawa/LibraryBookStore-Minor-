@@ -62,8 +62,5 @@ var libraryFormSubmit=(e)=>{
     const displayBook= new bookDisplay(book);
     displayBook.addBook();
 
-    let toastBody=document.getElementsByClassName("toast-body").innerHTML = "Added";
-    console.log(document.getElementsByClassName("toast-body"));
-    bsAlert.show();
 }
 libraryForm.addEventListener('submit',libraryFormSubmit);
